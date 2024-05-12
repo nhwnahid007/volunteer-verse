@@ -4,9 +4,9 @@ import Navbar from "../shared/Navbar";
 
 const Main = () => {
     return (
-        <div>
+        <div className="font-lato">
             <Navbar></Navbar>
-           <Outlet></Outlet>
+            <Outlet></Outlet>
         </div>
     );
 };
