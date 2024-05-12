@@ -1,23 +1,20 @@
 import { useEffect, useState } from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 const Navbar = () => {
-  const [theme, setTheme] = useState("light");
+  const storedTheme = localStorage.getItem("theme");
+  const [theme, setTheme] = useState(storedTheme || "light");
 
   const handleToggle = (e) => {
-    if (e.target.checked) {
-      setTheme("retro");
-    } else {
-      setTheme("light");
-    }
+    const selectedTheme = e.target.checked ? "retro" : "light";
+    setTheme(selectedTheme);
+    localStorage.setItem("theme", selectedTheme);
   };
 
   useEffect(() => {
-    localStorage.setItem("theme", theme);
-    const localTheme = localStorage.getItem("theme");
-
-    document.querySelector("html").setAttribute("data-theme", localTheme);
+    document.querySelector("html").setAttribute("data-theme", theme);
   }, [theme]);
+
   const navLinks = (
     <>
       <li>
@@ -62,7 +59,16 @@ const Navbar = () => {
             {navLinks}
           </ul>
         </div>
-        <a className="btn btn-ghost text-xl">daisyUI</a>
+        <Link to='/' className="btn p-0 btn-ghost text-xl flex items-center">
+          <img
+            className="w-12 h-12"
+            src="https://i.postimg.cc/Tw9h3ZhY/volunteerverse.png"
+            alt="Volunteerverse Logo"
+          />
+          <span className="text-2xl hidden z-0 md:flex font-bold text-gray-800">
+            Volunteerverse
+          </span>
+        </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">{navLinks}</ul>
@@ -86,6 +92,7 @@ const Navbar = () => {
           <input
             type="checkbox"
             onChange={handleToggle}
+            checked={theme === "retro"}
             value="synthwave"
             className="toggle theme-controller"
           />
