@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
+import { Link } from "react-router-dom";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -25,7 +26,7 @@ const Login = () => {
           }}
         ></div>
         <div className="w-full p-8 lg:w-1/2">
-          <p className="text-xl text-gray-600 text-center">Welcome back!</p>
+          <p className="text-xl font-merriweather text-gray-600 text-center">Welcome back!</p>
           <form onSubmit={handleSignIn}>
             <div className="mt-4">
               <label className="block text-gray-700 text-sm font-bold mb-2">
@@ -114,7 +115,7 @@ const Login = () => {
               className="text-xs text-gray-500 capitalize text-center w-full"
             >
               Don&apos;t have any account yet?
-              <span className="text-blue-700"> Sign Up</span>
+              <Link to='/register' className="text-blue-700"> Sign Up</Link>
             </a>
           </div>
         </div>

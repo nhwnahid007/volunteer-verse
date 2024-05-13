@@ -65,7 +65,7 @@ const Navbar = () => {
             src="https://i.postimg.cc/Tw9h3ZhY/volunteerverse.png"
             alt="Volunteerverse Logo"
           />
-          <span className="text-2xl hidden z-0 md:flex font-bold text-gray-800">
+          <span className="text-2xl hidden z-0 md:flex font-bold dark:text-gray-800">
             Volunteerverse
           </span>
         </Link>
