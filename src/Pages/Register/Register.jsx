@@ -1,16 +1,22 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import swal from "sweetalert";
-
+import { AuthContext } from "../../Provider/AuthProvider";
 
 const Register = () => {
-    const [showPassword, setShowPassword] = useState(false);
-    const [registerError, setRegisterError] = useState();
+  const [showPassword, setShowPassword] = useState(false);
+  const [registerError, setRegisterError] = useState();
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location?.state || "/";
+  const { createUser, updateUserProfile, setUser, googleLogin } = useContext(
+    AuthContext
+  );
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
-    return
+    return;
   };
   const handleRegister = async (e) => {
     e.preventDefault();
@@ -18,37 +24,63 @@ const Register = () => {
     const name = form.name.value;
     const email = form.email.value;
     const password = form.password.value;
-    const photo = form.photo.value;
-    console.log({ email, password,photo,name });
+    const photoURL = form.photo.value;
+    console.log({ email, password, photoURL, name });
     if (password.length < 6) {
-        setRegisterError("Password should be at least 6 characters or longer");
+      setRegisterError("Password should be at least 6 characters or longer");
+      swal(
+        "Oops!",
+        "Password should be at least 6 characters or longer. Please try again.",
+        "error"
+      );
+      return;
+    } else if (!/[A-Z]/.test(password)) {
+      setRegisterError("Your password should contain a  uppercase letter");
+      swal(
+        "Oops!",
+        "Your password should contain a  uppercase letter",
+        "error"
+      );
+      return;
+    } else if (!/[a-z]/.test(password)) {
+      setRegisterError("Your password should contain a  lowercase letter");
+      swal(
+        "Oops!",
+        "Your password should contain a  lowercase letter",
+        "error"
+      );
+      return;
+    }
+    setRegisterError("");
+    createUser(email, password)
+      .then(() => {
+        updateUserProfile(name, photoURL).then(() => {
+          setUser({ displayName: name, photoURL: photoURL });
+          navigate(from);
+        });
+
+        swal("Good job!", "Successfully Registered!", "success");
+      })
+
+      .catch((error) => {
+        console.error(error);
         swal(
           "Oops!",
-          "Password should be at least 6 characters or longer. Please try again.",
+          "An error occurred during registration. Please try again.",
           "error"
         );
-        return;
-      } else if (!/[A-Z]/.test(password)) {
-        setRegisterError("Your password should contain a  uppercase letter");
-        swal(
-          "Oops!",
-          "Your password should contain a  uppercase letter",
-          "error"
-        );
-        return;
-      } else if (!/[a-z]/.test(password)) {
-        setRegisterError("Your password should contain a  lowercase letter");
-        swal(
-          "Oops!",
-          "Your password should contain a  lowercase letter",
-          "error"
-        );
-        return;
-      }
-      setRegisterError("");
+      });
   };
-    return (
-        <div className="flex items-center justify-center h-screen w-full px-5 sm:px-0">
+  const handleSocialLogin = (socialProvider) => {
+    socialProvider().then((result) => {
+      if (result.user) {
+        swal("Good job!", "Successfully Logged In!", "success");
+        navigate(from);
+      }
+    });
+  };
+  return (
+    <div className="flex items-center justify-center h-screen w-full px-5 sm:px-0">
       <div className="flex bg-white rounded-lg shadow-lg border overflow-hidden max-w-sm lg:max-w-4xl w-full">
         <div
           className="hidden md:block lg:w-1/2 object-cover bg-cover bg-blue-700"
@@ -57,7 +89,9 @@ const Register = () => {
           }}
         ></div>
         <div className="w-full p-8 lg:w-1/2">
-          <p className="text-xl font-bold font-merriweather text-gray-600 text-center">Register Now!</p>
+          <p className="text-xl font-bold font-merriweather text-gray-600 text-center">
+            Register Now!
+          </p>
           <form onSubmit={handleRegister}>
             <div className="mt-4">
               <label className="block text-gray-700 text-sm font-bold mb-2">
@@ -119,7 +153,6 @@ const Register = () => {
               </div>
 
               {registerError && <p className="text-red-700">{registerError}</p>}
-             
             </div>
             <div className="mt-8">
               <button className="bg-blue-700 text-white font-bold py-2 px-4 w-full rounded hover:bg-blue-600">
@@ -127,9 +160,10 @@ const Register = () => {
               </button>
             </div>
           </form>
-          <a
-            href="#"
-            className=" flex items-center justify-center mt-4 text-white rounded-lg shadow-md hover:bg-gray-100"
+          <Link
+            to="#"
+            onClick={() => handleSocialLogin(googleLogin)}
+            className="flex items-center justify-center mt-4 text-white rounded-lg shadow-md hover:bg-gray-100 w-full"
           >
             <div className="flex px-5 justify-center w-full py-3">
               <div className="min-w-[30px]">
@@ -153,27 +187,26 @@ const Register = () => {
                 </svg>
               </div>
               <div className="flex w-full justify-center">
-                <h1 className="whitespace-nowrap text-gray-600 font-bold">
+                <span className="whitespace-nowrap text-gray-600 font-bold">
                   Sign in with Google
-                </h1>
+                </span>
               </div>
             </div>
-          </a>
+          </Link>
           <div className="mt-4 flex items-center w-full text-center">
-            <a
-              href="#"
-              className="text-xs text-gray-500 capitalize text-center w-full"
-            >
+            <span className="text-xs text-gray-500 capitalize text-center w-full">
               Don&apos;t have any account yet?
-              <Link to='/login' className="text-blue-700"> Sign In</Link>
-            </a>
+              <Link to="/login" className="text-blue-700">
+                {" "}
+                Sign In
+              </Link>
+            </span>
           </div>
         </div>
       </div>
     </div>
-    );
+  );
 };
 
 export default Register;
-
 

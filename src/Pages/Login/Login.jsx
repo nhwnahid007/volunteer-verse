@@ -1,10 +1,17 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import swal from "sweetalert";
+import { AuthContext } from "../../Provider/AuthProvider";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const { signInUser, googleLogin, } = useContext(AuthContext);
+  const location = useLocation();
+  console.log(location);
+  const navigate = useNavigate();
 
+  const from = location?.state ? location.state : "/";
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
@@ -12,8 +19,34 @@ const Login = () => {
     e.preventDefault();
     const form = e.target;
     const email = form.email.value;
-    const pass = form.password.value;
-    console.log({ email, pass });
+    const password = form.password.value;
+    console.log({ email, password });
+    signInUser(email, password)
+    .then((result) => {
+      console.log(result.user);
+      swal("Good job!", "Successfully Logged In!", "success");
+      //navigate aftter login
+      navigate(location?.state ? location.state : "/");
+    })
+    .catch((error) => {
+      console.log(error);
+      swal(
+        "Oops!",
+        "An error occurred during Login. Please try again.",
+        "error"
+      );
+    });
+  };
+
+  const handleSocialLogin = (socialProvider) => {
+    socialProvider().then((result) => {
+      if (result.user) {
+        if (result.user) {
+          swal("Good job!", "Successfully Logged In!", "success");
+          navigate(from);
+        }
+      }
+    });
   };
 
   return (
@@ -53,7 +86,7 @@ const Login = () => {
                   name="password"
                   required
                 />
-                <button
+                <div
                   onClick={togglePasswordVisibility}
                   className="absolute inset-y-0 right-0 flex items-center px-3 focus:outline-none"
                 >
@@ -62,7 +95,7 @@ const Login = () => {
                   ) : (
                     <AiFillEye className="h-6 w-6 text-gray-500" />
                   )}
-                </button>
+                </div>
               </div>
               <a
                 href="#"
@@ -103,9 +136,9 @@ const Login = () => {
                 </svg>
               </div>
               <div className="flex w-full justify-center">
-                <h1 className="whitespace-nowrap text-gray-600 font-bold">
+                <button onClick={() => handleSocialLogin(googleLogin)}className="whitespace-nowrap text-gray-600 font-bold">
                   Sign in with Google
-                </h1>
+                </button>
               </div>
             </div>
           </a>
