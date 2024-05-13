@@ -1,9 +1,10 @@
+import Carousel from "../../components/Carousel";
 
 
 const Home = () => {
     return (
         <div className="font-merriweather">
-            This is home
+            <Carousel></Carousel>
         </div>
     );
 };

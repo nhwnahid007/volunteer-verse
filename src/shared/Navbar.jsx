@@ -33,7 +33,7 @@ const Navbar = () => {
           className={({ isActive }) =>
             isActive
               ? " font-black bg-gradient-to-r from-pink-300 via-purple-300 to-indigo-400"
-              : "text-gray-700 hover:bg-gray-200 hover:text-gray-500 hover:underline hover:underline-offset-2"
+              : "font-bold hover:bg-gray-200 hover:text-gray-500 hover:underline hover:underline-offset-2"
           }
           to="/"
         >
@@ -126,7 +126,7 @@ const Navbar = () => {
           <>
             <div
               data-tip={user?.displayName}
-              className=" tooltip tooltip-left dropdown dropdown-end"
+              className="z-50 tooltip tooltip-left dropdown dropdown-end"
             >
               <div
                 tabIndex={0}
