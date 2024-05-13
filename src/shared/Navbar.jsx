@@ -1,10 +1,14 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
+import { AuthContext } from "../Provider/AuthProvider";
+import swal from "sweetalert";
 
 const Navbar = () => {
   const storedTheme = localStorage.getItem("theme");
   const [theme, setTheme] = useState(storedTheme || "light");
-
+  const { user, logOut } = useContext(AuthContext);
+  console.log(user);
+  console.log(user?.photoURL);
   const handleToggle = (e) => {
     const selectedTheme = e.target.checked ? "retro" : "light";
     setTheme(selectedTheme);
@@ -14,6 +18,13 @@ const Navbar = () => {
   useEffect(() => {
     document.querySelector("html").setAttribute("data-theme", theme);
   }, [theme]);
+
+  const handleSignOut = () => {
+    logOut().then(() => {
+      console.log("logged out");
+      swal("Good job!", "Successfully Logged Out!", "success");
+    });
+  };
 
   const navLinks = (
     <>
@@ -59,7 +70,7 @@ const Navbar = () => {
             {navLinks}
           </ul>
         </div>
-        <Link to='/' className="btn p-0 btn-ghost text-xl flex items-center">
+        <Link to="/" className="btn p-0 btn-ghost text-xl flex items-center">
           <img
             className="w-12 h-12"
             src="https://i.postimg.cc/Tw9h3ZhY/volunteerverse.png"
@@ -74,7 +85,7 @@ const Navbar = () => {
         <ul className="menu menu-horizontal px-1">{navLinks}</ul>
       </div>
       <div className="navbar-end">
-        <label className="flex cursor-pointer gap-2">
+        <label className="flex mr-5 cursor-pointer gap-2">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="20"
@@ -110,7 +121,55 @@ const Navbar = () => {
             <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
           </svg>
         </label>
-        <Link  to='/login' className="btn p-1 md:p-3">Login</Link>
+
+        {user ? (
+          <>
+            <div
+              data-tip={user?.displayName}
+              className=" tooltip tooltip-left dropdown dropdown-end"
+            >
+              <div
+                tabIndex={0}
+                role="button"
+                className="btn btn-ghost btn-circle avatar"
+              >
+                <div className=" w-10 rounded-full">
+                  <img
+                    alt="userPhoto"
+                    src={user?.photoURL ||
+                      "https://i.ibb.co/FHfFTWX/User-Profile-PNG-Free-Download.png"}
+                  />
+                </div>
+              </div>
+              <ul
+                tabIndex={0}
+                className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52"
+              >
+                <li>
+                  <a className="justify-between">
+                    Profile
+                    <span className="badge">New</span>
+                  </a>
+                </li>
+                <li>
+                  <a>Add Volunteer Post</a>
+                </li>
+                <li>
+                  <a>Manage My Post</a>
+                </li>
+                <li>
+                  <button onClick={handleSignOut} className="font-bold">
+                    Logout
+                  </button>
+                </li>
+              </ul>
+            </div>
+          </>
+        ) : (
+          <Link to="/login" className="btn p-1 md:p-3">
+            Login
+          </Link>
+        )}
       </div>
     </div>
   );

@@ -24,8 +24,8 @@ const Register = () => {
     const name = form.name.value;
     const email = form.email.value;
     const password = form.password.value;
-    const photoURL = form.photo.value;
-    console.log({ email, password, photoURL, name });
+    const photoUrl = form.photo.value;
+    console.log({ email, password, photoUrl, name });
     if (password.length < 6) {
       setRegisterError("Password should be at least 6 characters or longer");
       swal(
@@ -53,14 +53,19 @@ const Register = () => {
     }
     setRegisterError("");
     createUser(email, password)
-      .then(() => {
-        updateUserProfile(name, photoURL).then(() => {
-          setUser({ displayName: name, photoURL: photoURL });
-          navigate(from);
-        });
+    .then(() => {
 
-        swal("Good job!", "Successfully Registered!", "success");
-      })
+      updateUserProfile(name,photoUrl)
+  .then(()=>{
+    setUser({displayName : name, photoURL : photoUrl})
+      navigate(from)
+
+  })
+
+      swal("Good job!", "Successfully Registered!","success");
+      
+    })
+
 
       .catch((error) => {
         console.error(error);
