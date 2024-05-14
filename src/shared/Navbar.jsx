@@ -39,6 +39,19 @@ const Navbar = () => {
         >
           Home
         </NavLink>
+        
+      </li>
+      <li>
+      <NavLink
+          className={({ isActive }) =>
+            isActive
+              ? " font-black bg-gradient-to-r from-pink-300 via-purple-300 to-indigo-400"
+              : "font-bold hover:bg-gray-200 hover:text-gray-500 hover:underline hover:underline-offset-2"
+          }
+          to="/needvolunteer"
+        >
+          Need volunteer
+        </NavLink>
       </li>
     </>
   );
