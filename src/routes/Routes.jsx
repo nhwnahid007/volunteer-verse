@@ -7,6 +7,7 @@ import Register from "../Pages/Register/Register";
 import NeedPostCardDetails from "../Pages/CardDetails/NeedPostCardDetails";
 import AddVolunteerPost from "../Pages/AddVolunteerPost/AddVolunteerPost";
 import NeedVolunteerPage from "../Pages/NeedVolunteer/NeedVolunteerPage";
+import MangeMyPost from "../Pages/ManageMyPost/MangeMyPost";
 
 
 const router = createBrowserRouter([
@@ -32,6 +33,11 @@ const router = createBrowserRouter([
             path: '/volunteer/:id',
             element: <NeedPostCardDetails></NeedPostCardDetails>,
             loader: ({params}) => fetch(`${import.meta.env.VITE_API_URL}/volunteer/${params.id}`)
+        },
+        {
+            path: '/managemypost/',
+            element: <MangeMyPost></MangeMyPost>,
+            loader: () => fetch(`${import.meta.env.VITE_API_URL}/managemypost`)
         },
         {
           path: '/addvolunteerpost',
