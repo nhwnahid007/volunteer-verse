@@ -39,10 +39,9 @@ const Navbar = () => {
         >
           Home
         </NavLink>
-        
       </li>
       <li>
-      <NavLink
+        <NavLink
           className={({ isActive }) =>
             isActive
               ? " font-black bg-gradient-to-r from-pink-300 via-purple-300 to-indigo-400"
@@ -149,8 +148,10 @@ const Navbar = () => {
                 <div className=" w-10 rounded-full">
                   <img
                     alt="userPhoto"
-                    src={user?.photoURL ||
-                      "https://i.ibb.co/FHfFTWX/User-Profile-PNG-Free-Download.png"}
+                    src={
+                      user?.photoURL ||
+                      "https://i.ibb.co/FHfFTWX/User-Profile-PNG-Free-Download.png"
+                    }
                   />
                 </div>
               </div>
@@ -165,10 +166,28 @@ const Navbar = () => {
                   </a>
                 </li>
                 <li>
-                  <Link to='/addvolunteerpost'>Add Volunteer Post</Link>
+                  <NavLink
+                    className={({ isActive }) =>
+                      isActive
+                        ? " font-black bg-gradient-to-r from-pink-300 via-purple-300 to-indigo-400"
+                        : "font-bold hover:bg-gray-200 hover:text-gray-500 hover:underline hover:underline-offset-2"
+                    }
+                    to="/addvolunteerpost"
+                  >
+                    Add Volunteer Post
+                  </NavLink>
                 </li>
                 <li>
-                  <a>Manage My Post</a>
+                <NavLink
+                    className={({ isActive }) =>
+                      isActive
+                        ? " font-black bg-gradient-to-r from-pink-300 via-purple-300 to-indigo-400"
+                        : "font-bold hover:bg-gray-200 hover:text-gray-500 hover:underline hover:underline-offset-2"
+                    }
+                    to="/managemypost"
+                  >
+                    Manage my Post
+                  </NavLink>
                 </li>
                 <li>
                   <button onClick={handleSignOut} className="font-bold">

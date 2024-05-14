@@ -6,10 +6,11 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import axios from "axios";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 const AddVolunteerPost = () => {
   const [startDate, setStartDate] = useState(new Date());
-
+const navigate = useNavigate()
   const { user } = useContext(AuthContext);
   console.log(user);
 
@@ -17,7 +18,7 @@ const AddVolunteerPost = () => {
   const handleNeedVolunteerPost = async event => {
     event.preventDefault()
     const form = event.target
-    const title = form.title.value
+    const post_title = form.title.value
     const thumbnail = form.thumbnail.value
     const description = form.description.value
     const category = form.category.value
@@ -28,14 +29,16 @@ const AddVolunteerPost = () => {
       month: '2-digit',
       day: '2-digit',
     });
-    const volunteerneed = parseFloat(form.volunteerneed.value)
-    const name = form.name.value
-    const email = form.email.value
+    const volunteers_needed = parseFloat(form.volunteerneed.value)
+    const 
+    organizer_name = form.name.value
+    const organizer_email = form.email.value
 
    
 
     const needVolunteerData = {
-        title,thumbnail,description,category,deadline,location,volunteerneed,name,email
+      post_title,thumbnail,description,category,deadline,location,volunteers_needed,
+      organizer_name,organizer_email
     }
    console.table(needVolunteerData)
    try{
@@ -43,6 +46,7 @@ const AddVolunteerPost = () => {
     console.log(data)
     if (data.insertedId){
       toast.success('Added sucessfully')
+      navigate('/needvolunteer')
     }
    }
    catch(err){

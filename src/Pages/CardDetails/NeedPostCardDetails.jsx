@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { BsPeople } from "react-icons/bs";
 import { FaRegClock } from "react-icons/fa";
 import { FaMapLocationDot } from "react-icons/fa6";
@@ -6,6 +7,9 @@ import { MdEmail } from "react-icons/md";
 import { Link, useLoaderData } from "react-router-dom";
 
 const NeedPostCardDetails = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   const volunteer = useLoaderData();
   console.log(volunteer);
   const {
@@ -20,7 +24,7 @@ const NeedPostCardDetails = () => {
     organizer_email,
   } = volunteer;
   return (
-    <div className="h-full overflow-hidden">
+    <div className="min-h-screen mt-5 overflow-hidden">
       <div className="bg-[#FFFAE6] h-full p-8 md:p-16 flex items-center justify-center">
         <div className="max-w-5xl flex m-4 md:m-6">
           <div className="relative group sm:w-full md:w-4/6 hover:bg-orange-300 border-t border-l border-b border-r md:border-r-0 bg-opacity-5 transition-all duration-300">
