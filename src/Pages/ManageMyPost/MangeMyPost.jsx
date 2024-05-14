@@ -4,6 +4,7 @@ import toast from "react-hot-toast";
 import Swal from "sweetalert2";
 import { FaDeleteLeft } from "react-icons/fa6";
 import { Link } from "react-router-dom";
+import { GrUpdate } from "react-icons/gr";
 
 
 
@@ -71,8 +72,8 @@ const MangeMyPost = () => {
                 <td>{singleList.deadline}</td>
                 
                 <td>
-                  <Link to={`/Update/${singleList._id}`} className="btn">
-                    Update
+                  <Link to={`/Update/${singleList._id}`} className="btn bg-slate-200">
+                 <span className="flex items-center gap-1"> <GrUpdate />   Update</span>
                   </Link>
                 </td>
                 <td>

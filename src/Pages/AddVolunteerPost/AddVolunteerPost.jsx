@@ -69,7 +69,7 @@ const navigate = useNavigate()
                 Post Title
               </label>
               <input
-                id="username"
+                required id="username"
                 type="text"
                 name="title"
                 className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
@@ -83,7 +83,7 @@ const navigate = useNavigate()
                 Thumbnail
               </label>
               <input
-                id="username"
+                required id="username"
                 type="text"
                 name="thumbnail"
                 className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
@@ -97,7 +97,7 @@ const navigate = useNavigate()
                 Description
               </label>
               <input
-                id="username"
+                required id="username"
                 type="text"
                 name="description"
                 className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
@@ -111,7 +111,7 @@ const navigate = useNavigate()
                 Category
               </label>
               <input
-                id="username"
+                required id="username"
                 type="text"
                 name="category"
                 className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
@@ -126,7 +126,7 @@ const navigate = useNavigate()
                 Location
               </label>
               <input
-                id="username"
+                required id="username"
                 type="text"
                 name="location"
                 className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
@@ -141,7 +141,7 @@ const navigate = useNavigate()
                 No. of volunteer Needed
               </label>
               <input
-                id="username"
+                required id="username"
                 type="text"
                 name="volunteerneed"
                 className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
@@ -155,12 +155,7 @@ const navigate = useNavigate()
               >
                 Deadline
               </label>
-              {/* <input
-                id="username"
-                type="text"
-                name="deadline"
-                className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
-              /> */}
+             
                 <DatePicker className="border p-2 rounded-md" selected={startDate} onChange={(date) => setStartDate(date)} />  
 
             </div>
@@ -173,7 +168,7 @@ const navigate = useNavigate()
                 Organizer Name
               </label>
               <input
-                defaultValue={user?.displayName}
+                required defaultValue={user?.displayName}
                 readOnly
                 id="username"
                 type="text"
@@ -190,7 +185,7 @@ const navigate = useNavigate()
               Organizer Email Address
             </label>
             <input
-              defaultValue={user?.email}
+              required defaultValue={user?.email}
               readOnly
               id="emailAddress"
               type="email"

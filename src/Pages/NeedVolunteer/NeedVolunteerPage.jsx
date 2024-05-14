@@ -1,4 +1,4 @@
-import{ useState } from "react";
+import{ useEffect, useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import NeedVolunteerPageCard from "./NeedVolunteerPageCard";
 
@@ -7,6 +7,10 @@ const NeedVolunteerPage = () => {
     console.log(allVolunteers)
     const [searchTerm, setSearchTerm] = useState("");
     const [filteredVolunteers, setFilteredVolunteers] = useState(allVolunteers);
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+      }, []);
     
     // Filter volunteers based on search term
     const handleSearch = () => {

@@ -9,12 +9,14 @@ import toast from "react-hot-toast";
 import { useLoaderData, useNavigate } from "react-router-dom";
 
 const UpdatePage = () => {
-  const [startDate, setStartDate] = useState(new Date());
   const navigate = useNavigate();
   const { user } = useContext(AuthContext);
   const volunteer = useLoaderData()
-const {_id,post_title,thumbnail,description,category,location,volunteers_needed} =volunteer
+const {_id,post_title,thumbnail,description,category,location,volunteers_needed,deadline} =volunteer
+
   console.log(user);
+  const [startDate, setStartDate] = useState(deadline);
+
 
   const handleUpdateNewVolunteer = async (event) => {
     event.preventDefault();
