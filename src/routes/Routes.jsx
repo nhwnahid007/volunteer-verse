@@ -4,6 +4,7 @@ import Home from "../Pages/Home/Home";
 import Error from "../Pages/Error/Error";
 import Login from "../Pages/Login/Login";
 import Register from "../Pages/Register/Register";
+import NeedPostCardDetails from "../Pages/CardDetails/NeedPostCardDetails";
 
 
 const router = createBrowserRouter([
@@ -24,6 +25,11 @@ const router = createBrowserRouter([
         {
             path: '/register',
             element: <Register></Register>
+        },
+        {
+            path: '/volunteer/:id',
+            element: <NeedPostCardDetails></NeedPostCardDetails>,
+            loader: ({params}) => fetch(`${import.meta.env.VITE_API_URL}/volunteer/${params.id}`)
         },
       ]
     },

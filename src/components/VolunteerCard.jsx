@@ -25,7 +25,7 @@ const VolunteerCard = ({ volunteer }) => {
       </p>
       <span className="absolute inset-x-0 bottom-0 h-2 bg-gradient-to-r from-green-300 via-blue-500 to-purple-600"></span>
 
-      <Link to={`vlunteers/${_id}`}
+      <Link to={`volunteer/${_id}`}
         className="group relative inline-flex items-center overflow-hidden rounded bg-gradient-to-r from-[#44BCFF] via-[#FF44EC] to-[#FF675E] px-8 py-3 text-white focus:outline-none focus:ring active:bg-indigo-500"
         href="#"
       >
