@@ -5,6 +5,7 @@ import { MdChevronRight } from "react-icons/md";
 import { Helmet } from "react-helmet-async";
 import Faq from "../../components/Faq";
 import { TypeAnimation } from "react-type-animation";
+import Features from "../../components/Features";
 
 const Home = () => {
   const volunteers = useLoaderData();
@@ -60,6 +61,9 @@ const Home = () => {
       </div>
 
       <div className="mt-5"><Faq></Faq></div>
+      <div className="">
+        <Features></Features>
+      </div>
     </div>
   );
 };
