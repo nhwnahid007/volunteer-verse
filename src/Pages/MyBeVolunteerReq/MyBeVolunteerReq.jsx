@@ -1,28 +1,30 @@
-import { useContext, useEffect, useState } from "react";
-import { AuthContext } from "../../Provider/AuthProvider";
+
 import toast from "react-hot-toast";
 import Swal from "sweetalert2";
 import { FaDeleteLeft } from "react-icons/fa6";
-import { Link } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import { GrUpdate } from "react-icons/gr";
+import { useEffect, useState } from "react";
 
-const MangeMyPost = () => {
-    const { user } = useContext(AuthContext);
+
+
+const MyBeVolunteerReq = () => {
+    const lists = useLoaderData()
+   const {volunteer_email} = lists
+
+    console.log(lists);
+   
     const [list, setList] = useState([]);
-    const [loading, setLoading] = useState(true);
-
     useEffect(() => {
-      fetch(`${import.meta.env.VITE_API_URL}/managemypost/${user?.email}`)
+      fetch(`${import.meta.env.VITE_API_URL}/mybevolunteerreq/${volunteer_email}`)
         .then((res) => res.json())
         .then((data) => {
           setList(data);
-          setLoading(false); 
-        })
-        .catch((error) => {
-          console.error("Error fetching data:", error);
-          setLoading(false); 
         });
-    }, [user]);
+    }, [volunteer_email]);
+
+   
+
 
     const handleDelete = (_id) => {
         console.log(_id);
@@ -53,15 +55,7 @@ const MangeMyPost = () => {
           }
         });
       };
-
-    if (loading) {
-        return null;
-    }
-
-    if(list.length<1){
-        return <h1 className="text-2xl mt-10 font-black text-red-600 text-center">You have not added any volunteer yet</h1>
-    }
-
+    
     return (
         <div>
             <table className="table">
@@ -84,7 +78,7 @@ const MangeMyPost = () => {
                 <td>{singleList.deadline}</td>
                 
                 <td>
-                  <Link to={`/Update/${singleList._id}`} className="btn bg-orange-400">
+                  <Link to={`/Update/${singleList._id}`} className="btn bg-slate-200">
                  <span className="flex items-center gap-1"> <GrUpdate />   Update</span>
                   </Link>
                 </td>
@@ -105,4 +99,4 @@ const MangeMyPost = () => {
     );
 };
 
-export default MangeMyPost;
+export default MyBeVolunteerReq;
