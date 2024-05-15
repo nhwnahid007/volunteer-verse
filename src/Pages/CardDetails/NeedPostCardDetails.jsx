@@ -1,12 +1,14 @@
 import { useEffect } from "react";
+import toast from "react-hot-toast";
 import { BsPeople } from "react-icons/bs";
 import { FaRegClock } from "react-icons/fa";
 import { FaMapLocationDot } from "react-icons/fa6";
 import { IoPerson } from "react-icons/io5";
 import { MdEmail } from "react-icons/md";
-import { Link, useLoaderData } from "react-router-dom";
+import { Link, useLoaderData, useNavigate } from "react-router-dom";
 
 const NeedPostCardDetails = () => {
+  
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -24,6 +26,17 @@ const NeedPostCardDetails = () => {
     organizer_name,
     organizer_email,
   } = volunteer;
+
+  const navigate = useNavigate();
+
+const handleVolunteerNeed = () => {
+  if (volunteers_needed < 1) {
+    toast.error('No volunteers needed');
+    navigate('/needvolunteer');
+  }
+};
+
+  
   return (
     <div className="min-h-screen mt-5 overflow-hidden">
       <div className="bg-[#FFFAE6] h-full p-8 md:p-16 flex items-center justify-center">
@@ -66,7 +79,7 @@ const NeedPostCardDetails = () => {
                 <MdEmail /> {organizer_email}
               </p>
             </div>
-            <Link to={`/bevolunteer/${_id}`} className="absolute text-center z-50 bottom-16 md:bottom-6 right-0 transform translate-x-12 flex items-center justify-center w-24 h-24 rounded-full bg-white group-hover:bg-green-200 text-indigo-800 group-hover:text-white font-semibold cursor-pointer group-hover:scale-110 duration-300 select-none">
+            <Link onClick={handleVolunteerNeed} to={`/bevolunteer/${_id}`} className="absolute text-center z-50 bottom-16 md:bottom-6 right-0 transform translate-x-12 flex items-center justify-center w-24 h-24 rounded-full bg-white group-hover:bg-green-200 text-indigo-800 group-hover:text-white font-semibold cursor-pointer group-hover:scale-110 duration-300 select-none">
               <span className="font-bold font-merriweather">
                 Be a volunteer
               </span>

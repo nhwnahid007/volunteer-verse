@@ -67,7 +67,7 @@ const {_id,post_title,thumbnail,description,category,location,volunteers_needed,
     <div>
       <section className="max-w-4xl mt-10 p-6 mx-auto bg-white rounded-md shadow-md dark:bg-gray-800">
         <h2 className="text-2xl text-center font-merriweather font-semibold text-gray-700 capitalize dark:text-white">
-          Add Volunteer Post
+          Update Volunteer Post
         </h2>
         <form onSubmit={handleUpdateNewVolunteer}>
           <div className="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">

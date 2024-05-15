@@ -12,7 +12,7 @@ const NeedVolunteerPage = () => {
         window.scrollTo(0, 0);
       }, []);
     
-    // Filter volunteers based on search term
+    
     const handleSearch = () => {
         const filtered = allVolunteers.filter(volunteer =>
             volunteer.post_title && volunteer.post_title.toLowerCase().includes(searchTerm.toLowerCase())
