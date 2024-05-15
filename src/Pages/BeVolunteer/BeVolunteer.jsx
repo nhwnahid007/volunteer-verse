@@ -19,6 +19,7 @@ const {organizer_name,organizer_email,post_title,thumbnail,description,category,
 
 
   const handleUpdateNewVolunteer = async (event) => {
+
     event.preventDefault();
     const form = event.target;
     const post_title = form.title.value;
@@ -39,6 +40,11 @@ const {organizer_name,organizer_email,post_title,thumbnail,description,category,
     const volunteer_email = form.volunteer_email.value;
     const suggestion = form.suggestion.value;
     const requested = form.requested.value;
+
+
+    if(volunteer_email===organizer_email){
+        return toast.error('Action not permitted. Organizer can not Request for volunteer')
+    }
     
     const BeVolunteerData = {
       post_title,
