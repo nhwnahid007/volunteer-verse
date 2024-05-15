@@ -77,8 +77,8 @@ const MangeMyPost = () => {
           <thead>
             <tr>
               <th>Title</th>
-              <th className="hidden md:flex">location</th>
-              <th className="hidden md:flex">Deadline</th>
+              <th className="hidden lg:flex">location</th>
+              <th className="hidden lg:flex">Deadline</th>
               
               <th>Update</th>
               <th>Delete</th>

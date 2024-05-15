@@ -1,11 +1,11 @@
 # Vlounteer Verse 
 
 
-TravelIQ is your passport to seamless travel experiences. With personalized recommendations, comprehensive guides, interactive trip planning tools, a vibrant community, and real-time updates, TravelIQ empowers adventurers to explore the world confidently, connect with fellow travelers, and make every journey unforgettable.
+"Welcome to VolunteerVerse, your premier platform for revolutionizing volunteer management. VolunteerVerse offers a dynamic ecosystem where organizations and individuals converge to make a meaningful impact. Our innovative tools facilitate seamless coordination, empowering you to find, engage, and mobilize volunteers effortlessly. Dive into VolunteerVerse and discover a world of endless possibilities, where every action contributes to building a brighter tomorrow."
 
- ## [TouristIQ](https://tourist-iq.web.app/)
+ ## [VolunteerVerse](https://volunteer-verse.web.app/)
 
-  check out our website [https://tourist-iq.web.app/](https://tourist-iq.web.app/).
+  check out our website [https://volunteer-verse.web.app/](https://volunteer-verse.web.app/).
 
 
 

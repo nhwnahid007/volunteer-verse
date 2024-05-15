@@ -3,6 +3,8 @@ import Carousel from "../../components/Carousel";
 import VolunteerCard from "../../components/VolunteerCard";
 import { MdChevronRight } from "react-icons/md";
 import { Helmet } from "react-helmet-async";
+import Faq from "../../components/Faq";
+import { TypeAnimation } from "react-type-animation";
 
 const Home = () => {
   const volunteers = useLoaderData();
@@ -10,10 +12,34 @@ const Home = () => {
   const limitedVolunteers = volunteers.slice(0, 6);
   console.log(limitedVolunteers);
   return (
-    <div className="">
+    <div data-aos="fade-up"
+    data-aos-delay="50"
+    data-aos-duration="1000"
+    data-aos-anchor-placement="top-center" className="">
       <Helmet>
         <title>Volunteer verse</title>
       </Helmet>
+
+<p className="flex justify-center">
+<TypeAnimation
+      sequence={[
+       
+        'We produce service for Hoomeless',
+        1000, 
+        'We produce service for Social ',
+        1000,
+        'We produce service for Youth',
+        1000,
+        'We produce service for education',
+        1000,
+      ]}
+      wrapper="span"
+      speed={50}
+      style={{ fontSize: '2em', display: 'inline-block' }}
+      repeat={Infinity}
+    />
+</p>
+
       <div className="z-0">
         {" "}
         <Carousel></Carousel>
@@ -32,6 +58,8 @@ const Home = () => {
             See ALL <MdChevronRight className="text-lg" />
           </Link>
       </div>
+
+      <div className="mt-5"><Faq></Faq></div>
     </div>
   );
 };
