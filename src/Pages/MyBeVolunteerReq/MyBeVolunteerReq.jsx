@@ -3,6 +3,7 @@ import { AuthContext } from "../../Provider/AuthProvider";
 import toast from "react-hot-toast";
 import Swal from "sweetalert2";
 import { MdCancel } from "react-icons/md";
+import { Helmet } from "react-helmet-async";
 
 const MyBeVolunteerReq = () => {
   const { user } = useContext(AuthContext);
@@ -64,6 +65,7 @@ const MyBeVolunteerReq = () => {
 
   if (list.length < 1) {
     return (
+      
       <h1 className="text-2xl mt-10 font-black text-red-600 text-center">
         You have not added any volunteer Request yet
       </h1>
@@ -72,6 +74,9 @@ const MyBeVolunteerReq = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>My be volunteer</title>
+      </Helmet>
       <table className="table">
         {/* head */}
         <thead>

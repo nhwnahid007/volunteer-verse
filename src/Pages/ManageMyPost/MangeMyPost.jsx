@@ -5,6 +5,7 @@ import Swal from "sweetalert2";
 import { FaDeleteLeft } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 import { GrUpdate } from "react-icons/gr";
+import { Helmet } from "react-helmet-async";
 
 const MangeMyPost = () => {
     const { user } = useContext(AuthContext);
@@ -68,6 +69,9 @@ const MangeMyPost = () => {
 
     return (
         <div>
+          <Helmet>
+        <title>Manage My post</title>
+      </Helmet>
             <table className="table">
           {/* head */}
           <thead>

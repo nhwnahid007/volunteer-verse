@@ -7,6 +7,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 const AddVolunteerPost = () => {
   const [startDate, setStartDate] = useState(new Date());
@@ -57,6 +58,9 @@ const navigate = useNavigate()
   }
   return (
     <div>
+      <Helmet>
+        <title>Add Volunteer</title>
+      </Helmet>
       <section className="max-w-4xl mt-10 p-6 mx-auto bg-white rounded-md shadow-md dark:bg-gray-800">
         <h2 className="text-2xl text-center font-merriweather font-semibold text-gray-700 capitalize dark:text-white">
           Add Volunteer Post

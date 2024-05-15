@@ -2,11 +2,15 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import MangeMyPost from '../ManageMyPost/MangeMyPost';
 import MyBeVolunteerReq from '../MyBeVolunteerReq/MyBeVolunteerReq';
+import { Helmet } from 'react-helmet-async';
 
 
 const MyActivity = () => {
     return (
         <div>
+          <Helmet>
+        <title>My activity</title>
+      </Helmet>
             <Tabs>
   <div className='flex mt-5 items-center justify-center'>
         <TabList>

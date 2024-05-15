@@ -4,6 +4,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import swal from "sweetalert";
 import { AuthContext } from "../../Provider/AuthProvider";
 import axios from "axios";
+import { Helmet } from "react-helmet-async";
 
 
 const Register = () => {
@@ -90,6 +91,9 @@ const Register = () => {
 
   return (
     <div className="flex items-center justify-center h-screen w-full px-5 sm:px-0">
+      <Helmet>
+        <title>Register</title>
+      </Helmet>
       <div className="flex bg-white rounded-lg shadow-lg border overflow-hidden max-w-sm lg:max-w-4xl w-full">
         <div
           className="hidden md:block lg:w-1/2 object-cover bg-cover bg-blue-700"

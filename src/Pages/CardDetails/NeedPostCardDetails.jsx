@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { Helmet } from "react-helmet-async";
 import toast from "react-hot-toast";
 import { BsPeople } from "react-icons/bs";
 import { FaRegClock } from "react-icons/fa";
@@ -39,6 +40,9 @@ const handleVolunteerNeed = () => {
   
   return (
     <div className="min-h-screen mt-5 overflow-hidden">
+      <Helmet>
+        <title>Card details</title>
+      </Helmet>
       <div className="bg-[#FFFAE6] h-full p-8 md:p-16 flex items-center justify-center">
         <div className="max-w-5xl flex m-4 md:m-6">
           <div className="relative group sm:w-full md:w-4/6 hover:bg-orange-300 border-t border-l border-b border-r md:border-r-0 bg-opacity-5 transition-all duration-300">

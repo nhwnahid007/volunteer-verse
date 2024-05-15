@@ -3,6 +3,7 @@ import { Link, useLoaderData } from "react-router-dom";
 import NeedVolunteerPageCard from "./NeedVolunteerPageCard";
 import { TfiLayoutGrid3 } from "react-icons/tfi";
 import { CiViewTable } from "react-icons/ci";
+import { Helmet } from "react-helmet-async";
 
 const NeedVolunteerPage = () => {
   const allVolunteers = useLoaderData();
@@ -30,7 +31,9 @@ const NeedVolunteerPage = () => {
 
   return (
     <div>
-      {/* Search Input */}
+      <Helmet>
+        <title>Need volunteer</title>
+      </Helmet>
       <div className="flex mb-4">
         <input
           type="text"

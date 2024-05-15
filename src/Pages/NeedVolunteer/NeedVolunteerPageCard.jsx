@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 
 const NeedVolunteerPageCard = ({ volunteer }) => {
@@ -7,6 +8,9 @@ const NeedVolunteerPageCard = ({ volunteer }) => {
 
   return (
     <div className="relative flex flex-col rounded-lg p-6 shadow-sm bg-[#fcf4ff]">
+      <Helmet>
+        <title>Need volunteer</title>
+      </Helmet>
       <div className="overflow-hidden rounded-lg">
         <img
           className="mx-auto w-[600px] h-[300px] lg:h-[400px] cursor-pointer transition duration-200 ease-in-out transform hover:scale-110 rounded-lg"

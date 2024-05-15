@@ -7,6 +7,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { useLoaderData, useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 const UpdatePage = () => {
   const navigate = useNavigate();
@@ -65,6 +66,9 @@ const {_id,post_title,thumbnail,description,category,location,volunteers_needed,
   };
   return (
     <div>
+      <Helmet>
+        <title>Update Page</title>
+      </Helmet>
       <section className="max-w-4xl mt-10 p-6 mx-auto bg-white rounded-md shadow-md dark:bg-gray-800">
         <h2 className="text-2xl text-center font-merriweather font-semibold text-gray-700 capitalize dark:text-white">
           Update Volunteer Post

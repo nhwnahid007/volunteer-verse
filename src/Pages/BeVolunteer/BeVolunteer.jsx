@@ -8,6 +8,7 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import { useLoaderData, useNavigate } from "react-router-dom";
 import { IoMdWarning } from "react-icons/io";
+import { Helmet } from "react-helmet-async";
 
 const BeVolunteer = () => {
   const navigate = useNavigate();
@@ -97,6 +98,7 @@ const BeVolunteer = () => {
 
   if (volunteers_needed <= 0) {
     return (
+      
       <div className="bg-red-500 mt-10 flex justify-center items-center text-2xl text-white p-2 rounded-md">
         <IoMdWarning /> No volunteers needed for this section.
       </div>
@@ -105,6 +107,9 @@ const BeVolunteer = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>Be Volunteer</title>
+      </Helmet>
       <section className="max-w-4xl mt-10 p-6 mx-auto bg-white rounded-md shadow-md dark:bg-gray-800">
         <h2 className="text-2xl text-center font-merriweather font-semibold text-gray-700 capitalize dark:text-white">
           Add Volunteer Post

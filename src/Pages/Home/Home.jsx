@@ -2,6 +2,7 @@ import { Link, useLoaderData } from "react-router-dom";
 import Carousel from "../../components/Carousel";
 import VolunteerCard from "../../components/VolunteerCard";
 import { MdChevronRight } from "react-icons/md";
+import { Helmet } from "react-helmet-async";
 
 const Home = () => {
   const volunteers = useLoaderData();
@@ -10,6 +11,9 @@ const Home = () => {
   console.log(limitedVolunteers);
   return (
     <div className="">
+      <Helmet>
+        <title>Volunteer verse</title>
+      </Helmet>
       <div className="z-0">
         {" "}
         <Carousel></Carousel>
