@@ -52,6 +52,18 @@ const Navbar = () => {
           Need volunteer
         </NavLink>
       </li>
+      <li>
+                <NavLink
+                    className={({ isActive }) =>
+                      isActive
+                        ? " font-black bg-gradient-to-r from-pink-300 via-purple-300 to-indigo-400"
+                        : "font-bold hover:bg-gray-200 hover:text-gray-500 hover:underline hover:underline-offset-2"
+                    }
+                    to="/myactivity"
+                  >
+                    Manage my activity
+                  </NavLink>
+                </li>
     </>
   );
 
@@ -77,7 +89,7 @@ const Navbar = () => {
           </div>
           <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
+            className="menu gap-3 menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
           >
             {navLinks}
           </ul>
@@ -94,7 +106,7 @@ const Navbar = () => {
         </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1">{navLinks}</ul>
+        <ul className="menu gap-5 menu-horizontal px-1">{navLinks}</ul>
       </div>
       <div className="navbar-end">
         <label className="flex mr-5 cursor-pointer gap-2">
@@ -201,6 +213,7 @@ const Navbar = () => {
                     My Volunteer Requests
                   </NavLink>
                 </li>
+                
                 <li>
                   <button onClick={handleSignOut} className="font-bold">
                     Logout

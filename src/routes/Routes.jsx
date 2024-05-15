@@ -12,6 +12,7 @@ import UpdatePage from "../Pages/UpdatePage/UpdatePage";
 import BeVolunteer from "../Pages/BeVolunteer/BeVolunteer";
 import MyBeVolunteerReq from "../Pages/MyBeVolunteerReq/MyBeVolunteerReq";
 import PrivateRoute from "./PrivateRoute";
+import MyActivity from "../Pages/MyActivity/MyActivity";
 
 
 const router = createBrowserRouter([
@@ -67,6 +68,11 @@ const router = createBrowserRouter([
           element:<PrivateRoute><MyBeVolunteerReq></MyBeVolunteerReq></PrivateRoute>  ,
           
       },
+      {
+        path: '/myactivity',
+        element: <PrivateRoute><MyActivity></MyActivity></PrivateRoute>
+      }
+
       ]
     },
   ]);

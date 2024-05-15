@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import swal from "sweetalert";
@@ -6,16 +6,12 @@ import { AuthContext } from "../../Provider/AuthProvider";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
-  const { signInUser, googleLogin,user,loading } = useContext(AuthContext);
+  const { signInUser, googleLogin } = useContext(AuthContext);
 
   const location = useLocation();
   console.log(location);
   const navigate = useNavigate();
-  useEffect(()=>{
-    if(user){
-      navigate('/')
-    }
-  },[navigate,user])
+
 
   const from = location?.state ? location.state : "/";
   const togglePasswordVisibility = () => {
@@ -32,7 +28,7 @@ const Login = () => {
       console.log(result.user);
       swal("Good job!", "Successfully Logged In!", "success");
       //navigate aftter login
-      navigate(location?.state ? location.state : "/");
+      navigate(form);
     })
     .catch((error) => {
       console.log(error);
@@ -54,9 +50,7 @@ const Login = () => {
       }
     });
   };
-if(user || loading){
-  return
-}
+
   return (
     <div className="flex items-center justify-center h-screen w-full px-5 sm:px-0">
       <div className="flex bg-white rounded-lg shadow-lg border overflow-hidden max-w-sm lg:max-w-4xl w-full">

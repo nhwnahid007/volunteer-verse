@@ -69,8 +69,8 @@ const MangeMyPost = () => {
           <thead>
             <tr>
               <th>Title</th>
-              <th>location</th>
-              <th>Deadline</th>
+              <th className="hidden md:flex">location</th>
+              <th className="hidden md:flex">Deadline</th>
               
               <th>Update</th>
               <th>Delete</th>
@@ -80,8 +80,8 @@ const MangeMyPost = () => {
             {list.map((singleList, index) => (
               <tr key={index} className="bg-base-200">
                 <td>{singleList.post_title}</td>
-                <td>{singleList.location}</td>
-                <td>{singleList.deadline}</td>
+                <td className="hidden md:flex">{singleList.location}</td>
+                <td className="hidden md:flex">{singleList.deadline}</td>
                 
                 <td>
                   <Link to={`/Update/${singleList._id}`} className="btn bg-orange-400">

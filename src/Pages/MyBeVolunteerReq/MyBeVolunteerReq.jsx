@@ -73,8 +73,8 @@ const MyBeVolunteerReq = () => {
         <thead>
           <tr>
             <th>Title</th>
-            <th>Location</th>
-            <th>Deadline</th>
+            <th className="hidden md:flex">Location</th>
+            <th className="hidden md:flex">Deadline</th>
             <th>Cancel</th>
           </tr>
         </thead>
@@ -82,8 +82,8 @@ const MyBeVolunteerReq = () => {
           {list.map((singleList) => (
             <tr key={singleList._id} className="bg-base-200">
               <td>{singleList.post_title}</td>
-              <td>{singleList.location}</td>
-              <td>{singleList.deadline}</td>
+              <td className="hidden md:flex">{singleList.location}</td>
+              <td className="hidden md:flex">{singleList.deadline}</td>
               <td>
                 <button
                   onClick={() => handleDelete(singleList._id)}
