@@ -13,6 +13,7 @@ const NeedPostCardDetails = () => {
   const volunteer = useLoaderData();
   console.log(volunteer);
   const {
+    _id,
     thumbnail,
     post_title,
     description,
@@ -65,7 +66,7 @@ const NeedPostCardDetails = () => {
                 <MdEmail /> {organizer_email}
               </p>
             </div>
-            <Link className="absolute text-center z-50 bottom-16 md:bottom-6 right-0 transform translate-x-12 flex items-center justify-center w-24 h-24 rounded-full bg-white group-hover:bg-green-200 text-indigo-800 group-hover:text-white font-semibold cursor-pointer group-hover:scale-110 duration-300 select-none">
+            <Link to={`/bevolunteer/${_id}`} className="absolute text-center z-50 bottom-16 md:bottom-6 right-0 transform translate-x-12 flex items-center justify-center w-24 h-24 rounded-full bg-white group-hover:bg-green-200 text-indigo-800 group-hover:text-white font-semibold cursor-pointer group-hover:scale-110 duration-300 select-none">
               <span className="font-bold font-merriweather">
                 Be a volunteer
               </span>
