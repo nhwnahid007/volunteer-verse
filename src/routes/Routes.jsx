@@ -37,7 +37,9 @@ const router = createBrowserRouter([
         {
             path: '/volunteer/:id',
             element: <PrivateRoute><NeedPostCardDetails></NeedPostCardDetails></PrivateRoute>,
-            loader: ({params}) => fetch(`${import.meta.env.VITE_API_URL}/volunteer/${params.id}`)
+            loader: ({params}) => fetch(`${import.meta.env.VITE_API_URL}/volunteer/${params.id}`,{
+              credentials: 'include'
+            })
         },
         {
             path: '/bevolunteer/:id',
@@ -52,7 +54,9 @@ const router = createBrowserRouter([
         {
             path: '/managemypost',
             element: <PrivateRoute><MangeMyPost></MangeMyPost></PrivateRoute>,
-            loader: () => fetch(`${import.meta.env.VITE_API_URL}/managemypost`)
+            loader: () => fetch(`${import.meta.env.VITE_API_URL}/managemypost`,{
+              credentials: 'include'
+            })
         },
         {
           path: '/addvolunteerpost',

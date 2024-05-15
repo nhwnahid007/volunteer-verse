@@ -12,15 +12,24 @@ import { IoMdWarning } from "react-icons/io";
 const BeVolunteer = () => {
   const navigate = useNavigate();
   const { user } = useContext(AuthContext);
-  const volunteer = useLoaderData()
-const {_id,organizer_name,organizer_email,post_title,thumbnail,description,category,location,volunteers_needed,deadline} =volunteer
+  const volunteer = useLoaderData();
+  const {
+    _id,
+    organizer_name,
+    organizer_email,
+    post_title,
+    thumbnail,
+    description,
+    category,
+    location,
+    volunteers_needed,
+    deadline,
+  } = volunteer;
 
   console.log(user);
   const [startDate, setStartDate] = useState(deadline);
 
-
   const handleUpdateNewVolunteer = async (event) => {
-
     event.preventDefault();
     const form = event.target;
     const post_title = form.title.value;
@@ -33,7 +42,7 @@ const {_id,organizer_name,organizer_email,post_title,thumbnail,description,categ
       month: "2-digit",
       day: "2-digit",
     });
-    console.log(deadline)
+    console.log(deadline);
     const volunteers_needed = parseFloat(form.volunteerneed.value);
     const organizer_name = form.name.value;
     const organizer_email = form.email.value;
@@ -42,11 +51,12 @@ const {_id,organizer_name,organizer_email,post_title,thumbnail,description,categ
     const suggestion = form.suggestion.value;
     const requested = form.requested.value;
 
-
-    if(volunteer_email===organizer_email){
-        return toast.error('Action not permitted. Organizer can not Request for volunteer')
+    if (volunteer_email === organizer_email) {
+      return toast.error(
+        "Action not permitted. Organizer can not Request for volunteer"
+      );
     }
-    
+
     const BeVolunteerData = {
       post_title,
       thumbnail,
@@ -59,37 +69,42 @@ const {_id,organizer_name,organizer_email,post_title,thumbnail,description,categ
       organizer_email,
       volunteer_name,
       volunteer_email,
-      suggestion,requested
-
-
+      suggestion,
+      requested,
     };
-    
-    console.table(BeVolunteerData);
-    
-    try{
-        const {data} =   await axios.post(`${import.meta.env.VITE_API_URL}/bevolunteer`,BeVolunteerData)
-        console.log(data)
-        if (data.insertedId){
-          toast.success('Requested sucessfully')
-          axios.patch(`${import.meta.env.VITE_API_URL}/allvolunteer/${_id}`)
-          navigate('/needvolunteer')
-        }
-       }
-       catch(err){
-        console.log(err)
-       }
-      }
 
-     if(volunteers_needed<=0){
-       return <div className="bg-red-500 mt-10 flex justify-center items-center text-2xl text-white p-2 rounded-md">
-         <IoMdWarning /> No volunteers needed for this section. 
-        </div>
-     }
+    console.table(BeVolunteerData);
+
+    try {
+      const { data } = await axios.post(
+        `${import.meta.env.VITE_API_URL}/bevolunteer`,
+        BeVolunteerData, {
+            withCredentials: true,
+          }
+      );
+      console.log(data);
+      if (data.insertedId) {
+        toast.success("Requested sucessfully");
+        axios.patch(`${import.meta.env.VITE_API_URL}/allvolunteer/${_id}`, {
+          withCredentials: true,
+        });
+        navigate("/needvolunteer");
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  if (volunteers_needed <= 0) {
+    return (
+      <div className="bg-red-500 mt-10 flex justify-center items-center text-2xl text-white p-2 rounded-md">
+        <IoMdWarning /> No volunteers needed for this section.
+      </div>
+    );
+  }
 
   return (
     <div>
-
-
       <section className="max-w-4xl mt-10 p-6 mx-auto bg-white rounded-md shadow-md dark:bg-gray-800">
         <h2 className="text-2xl text-center font-merriweather font-semibold text-gray-700 capitalize dark:text-white">
           Add Volunteer Post
@@ -104,8 +119,8 @@ const {_id,organizer_name,organizer_email,post_title,thumbnail,description,categ
                 Post Title
               </label>
               <input
-              readOnly
-              defaultValue={post_title}
+                readOnly
+                defaultValue={post_title}
                 id="username"
                 type="text"
                 name="title"
@@ -120,8 +135,8 @@ const {_id,organizer_name,organizer_email,post_title,thumbnail,description,categ
                 Thumbnail
               </label>
               <input
-              readOnly
-              defaultValue={thumbnail}
+                readOnly
+                defaultValue={thumbnail}
                 id="username"
                 type="text"
                 name="thumbnail"
@@ -136,8 +151,8 @@ const {_id,organizer_name,organizer_email,post_title,thumbnail,description,categ
                 Description
               </label>
               <input
-              readOnly
-              defaultValue={description}
+                readOnly
+                defaultValue={description}
                 id="username"
                 type="text"
                 name="description"
@@ -152,7 +167,7 @@ const {_id,organizer_name,organizer_email,post_title,thumbnail,description,categ
                 Category
               </label>
               <input
-              readOnly
+                readOnly
                 id="username"
                 defaultValue={category}
                 type="text"
@@ -169,8 +184,8 @@ const {_id,organizer_name,organizer_email,post_title,thumbnail,description,categ
                 Location
               </label>
               <input
-              readOnly
-              defaultValue={location}
+                readOnly
+                defaultValue={location}
                 id="username"
                 type="text"
                 name="location"
@@ -186,8 +201,8 @@ const {_id,organizer_name,organizer_email,post_title,thumbnail,description,categ
                 No. of volunteer Needed
               </label>
               <input
-              readOnly
-              defaultValue={volunteers_needed}
+                readOnly
+                defaultValue={volunteers_needed}
                 id="username"
                 type="text"
                 name="volunteerneed"
@@ -202,9 +217,9 @@ const {_id,organizer_name,organizer_email,post_title,thumbnail,description,categ
               >
                 Deadline
               </label>
-              
+
               <DatePicker
-              readOnly
+                readOnly
                 className="border p-2 rounded-md"
                 selected={startDate}
                 onChange={(date) => setStartDate(date)}
@@ -212,21 +227,21 @@ const {_id,organizer_name,organizer_email,post_title,thumbnail,description,categ
             </div>
 
             <div className="">
-            <label
-              className="text-gray-700 dark:text-gray-200"
-              htmlFor="emailAddress"
-            >
-              Organizer Email Address
-            </label>
-            <input
-              defaultValue={organizer_email}
-              readOnly
-              id="emailAddress"
-              type="email"
-              name="email"
-              className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
-            />
-          </div>
+              <label
+                className="text-gray-700 dark:text-gray-200"
+                htmlFor="emailAddress"
+              >
+                Organizer Email Address
+              </label>
+              <input
+                defaultValue={organizer_email}
+                readOnly
+                id="emailAddress"
+                type="email"
+                name="email"
+                className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
+              />
+            </div>
 
             <div>
               <label
@@ -250,10 +265,9 @@ const {_id,organizer_name,organizer_email,post_title,thumbnail,description,categ
                 className="text-gray-700 dark:text-gray-200"
                 htmlFor="username"
               >
-               Suggestion
+                Suggestion
               </label>
               <input
-                
                 required
                 id="username"
                 type="text"
@@ -270,8 +284,8 @@ const {_id,organizer_name,organizer_email,post_title,thumbnail,description,categ
                 Volunteer Name
               </label>
               <input
-              readOnly
-              defaultValue={user?.displayName}
+                readOnly
+                defaultValue={user?.displayName}
                 id="username"
                 type="text"
                 name="volunteer_name"
@@ -279,45 +293,44 @@ const {_id,organizer_name,organizer_email,post_title,thumbnail,description,categ
               />
             </div>
             <div className="">
-            <label
-              className="text-gray-700 dark:text-gray-200"
-              htmlFor="emailAddress"
-            >
-              Volunteer Email Address
-            </label>
-            <input
-              defaultValue={user?.email}
-              readOnly
-              id="emailAddress"
-              type="email"
-              name="volunteer_email"
-              className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
-            />
-          </div>
-            
-
-          </div>
-          <div className="mt-3">
               <label
                 className="text-gray-700 dark:text-gray-200"
-                htmlFor="username"
+                htmlFor="emailAddress"
               >
-                Status
+                Volunteer Email Address
               </label>
               <input
-              
-              defaultValue='requested'
-                id="username"
-                type="text"
-                name="requested"
+                defaultValue={user?.email}
+                readOnly
+                id="emailAddress"
+                type="email"
+                name="volunteer_email"
                 className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
               />
             </div>
-          
+          </div>
+          <div className="mt-3">
+            <label
+              className="text-gray-700 dark:text-gray-200"
+              htmlFor="username"
+            >
+              Status
+            </label>
+            <input
+              defaultValue="requested"
+              id="username"
+              type="text"
+              name="requested"
+              className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
+            />
+          </div>
+
           <div className="mt-6">
             <button
-            title={volunteers_needed <= 0 ? "No volunteers needed" : ""}
-             disabled={volunteers_needed <=0} className="px-8 w-full block py-2.5 leading-5 text-white transition-colors duration-300 transform bg-gray-700 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600">
+              title={volunteers_needed <= 0 ? "No volunteers needed" : ""}
+              disabled={volunteers_needed <= 0}
+              className="px-8 w-full block py-2.5 leading-5 text-white transition-colors duration-300 transform bg-gray-700 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600"
+            >
               Request
             </button>
           </div>

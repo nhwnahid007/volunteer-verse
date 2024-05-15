@@ -10,7 +10,11 @@ const MyBeVolunteerReq = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_URL}/mybevolunteerreq/${user?.email}`)
+    fetch(`${import.meta.env.VITE_API_URL}/mybevolunteerreq/${user?.email}`,{
+      
+        credentials: 'include'
+      
+    })
       .then((res) => res.json())
       .then((data) => {
         setList(data);

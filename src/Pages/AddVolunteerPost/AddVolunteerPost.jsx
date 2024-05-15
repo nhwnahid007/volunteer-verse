@@ -42,7 +42,9 @@ const navigate = useNavigate()
     }
    console.table(needVolunteerData)
    try{
-    const {data} =   await axios.post(`${import.meta.env.VITE_API_URL}/volunteers`,needVolunteerData)
+    const {data} =   await axios.post(`${import.meta.env.VITE_API_URL}/volunteers`,needVolunteerData, {
+      withCredentials: true,
+    })
     console.log(data)
     if (data.insertedId){
       toast.success('Added sucessfully')
