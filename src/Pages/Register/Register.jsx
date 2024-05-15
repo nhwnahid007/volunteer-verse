@@ -63,6 +63,7 @@ const Register = () => {
   })
 
       swal("Good job!", "Successfully Registered!","success");
+      navigate(from)
       
     })
 
