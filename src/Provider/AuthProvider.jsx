@@ -12,6 +12,7 @@ import {
 
   import swal from "sweetalert";
 import auth from "../firebase/firebase.config";
+import axios from "axios";
   
   const googleProvider = new GoogleAuthProvider();
   const GithubProvider = new GithubAuthProvider();
@@ -41,8 +42,12 @@ import auth from "../firebase/firebase.config";
       return signInWithPopup(auth, GithubProvider);
     };
     //log out
-    const logOut = () => {
+    const logOut = async () => {
       setLoading(true);
+     const {data} = await axios(`${import.meta.env.VITE_API_URL}/logout`,{
+      withCredentials: true
+     })
+     console.log(data)
       // setUser(null);
       return signOut(auth).then(() => {
         swal("Good job!", "Successfully Logged out!", "success");

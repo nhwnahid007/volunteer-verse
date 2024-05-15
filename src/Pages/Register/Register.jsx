@@ -3,6 +3,8 @@ import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import swal from "sweetalert";
 import { AuthContext } from "../../Provider/AuthProvider";
+import axios from "axios";
+
 
 const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -52,39 +54,40 @@ const Register = () => {
       return;
     }
     setRegisterError("");
-    createUser(email, password)
-    .then(() => {
-
-      updateUserProfile(name,photoUrl)
-  .then(()=>{
-    setUser({displayName : name, photoURL : photoUrl})
-      navigate(from)
-
-  })
-
-      swal("Good job!", "Successfully Registered!","success");
-      navigate(from)
+    try {
+      const result = await createUser(email, password);
+      await updateUserProfile(name, photoUrl);
+      setUser({...result?.user, displayName: name, photoURL: photoUrl });
+      swal("Good job!", "Successfully Registered!", "success");
+      navigate(from);
+    } catch (error) {
+      console.error(error);
+      swal(
+        "Oops!",
+        "An error occurred during registration. Please try again.",
+        "error"
+      );
+    }
+    
+  };
+  const handleSocialLogin = async () => {
+    try {
+      const result = await googleLogin();
+      console.log(result.user);
+      const { data } = await axios.post(
+        `${import.meta.env.VITE_API_URL}/jwt`,
+        { email: result?.user?.email, },
+        { withCredentials: true }
+      );
+      console.log(data);
+      swal("Good job!", "Successfully Logged In!", "success");
+      navigate(from);
+    } catch (err) {
+      console.log(err);
       
-    })
-
-
-      .catch((error) => {
-        console.error(error);
-        swal(
-          "Oops!",
-          "An error occurred during registration. Please try again.",
-          "error"
-        );
-      });
+    }
   };
-  const handleSocialLogin = (socialProvider) => {
-    socialProvider().then((result) => {
-      if (result.user) {
-        swal("Good job!", "Successfully Logged In!", "success");
-        navigate(from);
-      }
-    });
-  };
+
   return (
     <div className="flex items-center justify-center h-screen w-full px-5 sm:px-0">
       <div className="flex bg-white rounded-lg shadow-lg border overflow-hidden max-w-sm lg:max-w-4xl w-full">
@@ -168,7 +171,7 @@ const Register = () => {
           </form>
           <Link
             to="#"
-            onClick={() => handleSocialLogin(googleLogin)}
+            onClick={handleSocialLogin}
             className="flex items-center justify-center mt-4 text-white rounded-lg shadow-md hover:bg-gray-100 w-full"
           >
             <div className="flex px-5 justify-center w-full py-3">

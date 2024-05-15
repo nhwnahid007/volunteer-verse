@@ -3,6 +3,7 @@ import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import swal from "sweetalert";
 import { AuthContext } from "../../Provider/AuthProvider";
+import axios from "axios";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -23,32 +24,46 @@ const Login = () => {
     const email = form.email.value;
     const password = form.password.value;
     console.log({ email, password });
-    signInUser(email, password)
-    .then((result) => {
+    try {
+      const result = await signInUser(email, password);
+
+      const { data } = await axios.post(
+        `${import.meta.env.VITE_API_URL}/jwt`,
+        { email: result?.user?.email, },
+        { withCredentials: true }
+      );
+      console.log(data);
+
       console.log(result.user);
       swal("Good job!", "Successfully Logged In!", "success");
-      //navigate aftter login
-      navigate(form);
-    })
-    .catch((error) => {
+      // Navigate after login
+      navigate(from);
+    } catch (error) {
       console.log(error);
       swal(
         "Oops!",
         "An error occurred during Login. Please try again.",
         "error"
       );
-    });
+    }
   };
 
-  const handleSocialLogin = (socialProvider) => {
-    socialProvider().then((result) => {
-      if (result.user) {
-        if (result.user) {
-          swal("Good job!", "Successfully Logged In!", "success");
-          navigate(from);
-        }
-      }
-    });
+  const handleSocialLogin = async () => {
+    try {
+      const result = await googleLogin();
+      console.log(result.user);
+      const { data } = await axios.post(
+        `${import.meta.env.VITE_API_URL}/jwt`,
+        { email: result?.user?.email, },
+        { withCredentials: true }
+      );
+      console.log(data);
+      swal("Good job!", "Successfully Logged In!", "success");
+      navigate(from);
+    } catch (err) {
+      console.log(err);
+      
+    }
   };
 
   return (
@@ -138,7 +153,7 @@ const Login = () => {
                 </svg>
               </div>
               <div className="flex w-full justify-center">
-                <button onClick={() => handleSocialLogin(googleLogin)}className="whitespace-nowrap text-gray-600 font-bold">
+                <button onClick={handleSocialLogin} className="whitespace-nowrap text-gray-600 font-bold">
                   Sign in with Google
                 </button>
               </div>
