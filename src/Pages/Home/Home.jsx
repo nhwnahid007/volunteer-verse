@@ -46,7 +46,11 @@ const Home = () => {
         <Carousel></Carousel>
       </div>
 
+      <p className="font-merriweather mx-auto animate-pulse my-5 mt-20 text-5xl text-center bg-gradient-to-r from-blue-600 via-green-500 to-indigo-400 text-transparent bg-clip-text">Join Us</p>
+
+
       <div className="grid gap-5 lg:grid-cols-2">
+        
         {limitedVolunteers.map((volunteer) => (
           <VolunteerCard
             volunteer={volunteer}

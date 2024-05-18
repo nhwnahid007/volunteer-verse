@@ -57,7 +57,12 @@ const navigate = useNavigate()
    }
   }
   return (
-    <div>
+    <div data-aos="fade-left"
+
+    data-aos-delay="50"
+    data-aos-duration="1000"
+    
+    data-aos-anchor-placement="top-center">
       <Helmet>
         <title>Add Volunteer</title>
       </Helmet>

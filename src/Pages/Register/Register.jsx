@@ -90,7 +90,12 @@ const Register = () => {
   };
 
   return (
-    <div className="flex items-center justify-center h-screen w-full px-5 sm:px-0">
+    <div data-aos="zoom-out-down"
+
+    data-aos-delay="50"
+    data-aos-duration="1000"
+    
+    data-aos-anchor-placement="top-center" className="flex items-center justify-center h-screen w-full px-5 sm:px-0">
       <Helmet>
         <title>Register</title>
       </Helmet>

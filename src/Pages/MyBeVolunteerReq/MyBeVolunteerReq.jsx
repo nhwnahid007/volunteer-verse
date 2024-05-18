@@ -73,7 +73,12 @@ const MyBeVolunteerReq = () => {
   }
 
   return (
-    <div>
+    <div data-aos="flip-down"
+
+    data-aos-delay="50"
+    data-aos-duration="1000"
+    
+    data-aos-anchor-placement="top-center">
       <Helmet>
         <title>My be volunteer</title>
       </Helmet>
@@ -82,8 +87,8 @@ const MyBeVolunteerReq = () => {
         <thead>
           <tr>
             <th>Title</th>
-            <th className="hidden md:flex">Location</th>
-            <th className="hidden md:flex">Deadline</th>
+            <th className="">Location</th>
+            <th className="">Deadline</th>
             <th>Cancel</th>
           </tr>
         </thead>
@@ -91,8 +96,8 @@ const MyBeVolunteerReq = () => {
           {list.map((singleList) => (
             <tr key={singleList._id} className="bg-base-200">
               <td>{singleList.post_title}</td>
-              <td className="hidden md:flex">{singleList.location}</td>
-              <td className="hidden md:flex">{singleList.deadline}</td>
+              <td className="">{singleList.location}</td>
+              <td className="">{singleList.deadline}</td>
               <td>
                 <button
                   onClick={() => handleDelete(singleList._id)}

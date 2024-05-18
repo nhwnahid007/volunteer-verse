@@ -30,7 +30,12 @@ const NeedVolunteerPage = () => {
   };
 
   return (
-    <div>
+    <div data-aos="flip-up"
+
+    data-aos-delay="50"
+    data-aos-duration="1000"
+    
+    data-aos-anchor-placement="top-center">
       <Helmet>
         <title>Need volunteer</title>
       </Helmet>
@@ -40,7 +45,7 @@ const NeedVolunteerPage = () => {
           placeholder="Search by Post Title"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          className="border border-gray-300 rounded-md px-3 py-2 mr-2"
+          className="border w-44 border-gray-300 rounded-md px-3 py-2 mr-2"
         />
         <button
           onClick={handleSearch}
@@ -49,47 +54,50 @@ const NeedVolunteerPage = () => {
           Search
         </button>
         <button
-          onClick={() => toggleLayout(false)}
-          className="bg-green-500 text-white px-4 py-2 rounded-md ml-2"
-        >
-          <TfiLayoutGrid3 />
-        </button>
-        <button
-          onClick={() => toggleLayout(true)}
-          className="bg-green-500 text-white px-4 py-2 rounded-md ml-2"
-        >
-          <CiViewTable />
-        </button>
+  onClick={() => toggleLayout(false)}
+  className={`bg-green-500 text-white px-4 py-2 rounded-md ml-2 ${!isTableLayout ? 'bg-green-500' : 'bg-slate-400'}`}
+>
+  <TfiLayoutGrid3 className="font-bold text-2xl " />
+</button>
+<button
+  onClick={() => toggleLayout(true)}
+  className={`bg-green-500 text-white px-4 py-2 rounded-md ml-2 ${isTableLayout ? 'bg-green-500' : 'bg-slate-400'}`}
+>
+  <CiViewTable className="font-bold text-2xl " />
+</button>
+
+
       </div>
 
       {/* Grid or Table to display volunteers */}
       {isTableLayout ? (
-        <table className="table overflow-auto">
-          <thead>
-            <tr>
-              <th className="px-4 py-2 font-bold">Title</th>
-              <th className="px-4 py-2 font-bold">Category</th>
-              <th className="px-4 py-2 font-bold">Location</th>
-              <th className="px-4 py-2 font-bold">Deadline</th>
-              <th className="px-4 py-2 font-bold">Details</th>
-            </tr>
-          </thead>
-          <tbody>
-            {filteredVolunteers.map((volunteer) => (
-              <tr key={volunteer._id}>
-                <td className="border px-4 py-2">{volunteer.post_title}</td>
-                <td className="border px-4 py-2">{volunteer.category}</td>
-                <td className="border px-4 py-2">{volunteer.location}</td>
-                <td className="border px-4 py-2">{volunteer.deadline}</td>
-                <td className="border px-4 py-2">
-                  <Link to={`/volunteer/${volunteer._id}`} className="btn">
-                    View Details
-                  </Link>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+       <table className="table-auto w-full overflow-x-auto">
+       <thead>
+         <tr>
+           <th className="px-2 py-2 md:px-4 md:py-2 font-bold">Title</th>
+           <th className="hidden md:flex px-2 py-2 md:px-4 md:py-2 font-bold">Category</th>
+           <th className="  hidden md:flex px-2 py-2 md:px-4 md:py-2 font-bold">Location</th>
+           <th className="px-2 py-2 md:px-4 md:py-2 font-bold">Deadline</th>
+           <th className="px-2 py-2 md:px-4 md:py-2 font-bold">Details</th>
+         </tr>
+       </thead>
+       <tbody>
+         {filteredVolunteers.map((volunteer) => (
+           <tr key={volunteer._id}>
+             <td className="border px-2 py-2 md:px-4 md:py-2">{volunteer.post_title}</td>
+             <td className="hidden md:flex border px-2 py-2 md:px-4 md:py-2">{volunteer.category}</td>
+             <td className="  hidden md:flex border px-2 py-2 md:px-4 md:py-2">{volunteer.location}</td>
+             <td className="border px-2 py-2 md:px-4 md:py-2">{volunteer.deadline}</td>
+             <td className="border px-2 py-2 md:px-4 md:py-2">
+               <Link to={`/volunteer/${volunteer._id}`} className="btn text-blue-500 hover:underline">
+                 View Details
+               </Link>
+             </td>
+           </tr>
+         ))}
+       </tbody>
+     </table>
+     
       ) : (
         <div className="grid lg:grid-cols-3 gap-5">
           {filteredVolunteers.map((volunteer) => (

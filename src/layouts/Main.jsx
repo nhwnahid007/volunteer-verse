@@ -10,7 +10,7 @@ const Main = () => {
     return (
         <div className="font-lato">
             <div className="container mx-auto">
-                <Navbar></Navbar>
+                <div className="sticky top-0 z-50"><Navbar></Navbar></div>
                 <div className="min-h-screen"><Outlet></Outlet></div>
             </div>
             <Footer></Footer>

@@ -10,12 +10,12 @@ const Slide = ({image,text}) => {
         }}
       >
         <div className='flex items-center justify-center w-full h-full bg-gray-900/70'>
-          <div className='text-center'>
+          <div className='animate animate__animated  animate__slideInUp  text-center'>
             <h1 className='text-3xl mb-10 font-semibold text-white lg:text-4xl'>
               {text}
             </h1>
             <br />
-            <Link to='/' className='w-full px-5 py-4 mt-4 text-sm font-medium text-white capitalize transition-colors duration-300 transform bg-gray-600 rounded-md lg:w-auto hover:bg-gray-500 focus:outline-none focus:bg-gray-500'>
+            <Link to='/addvolunteerpost' className='w-full px-5 py-4 mt-4 text-sm font-medium text-white capitalize transition-colors duration-300 transform bg-gray-600 rounded-md lg:w-auto hover:bg-gray-500 focus:outline-none focus:bg-gray-500'>
               Add Volunteer now
             </Link>
           </div>

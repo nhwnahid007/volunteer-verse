@@ -64,11 +64,21 @@ const MangeMyPost = () => {
     }
 
     if(list.length<1){
-        return <h1 className="text-2xl mt-10 font-black text-red-600 text-center">You have not added any volunteer yet</h1>
+        return <h1 data-aos="flip-left"
+
+        data-aos-delay="50"
+        data-aos-duration="1000"
+        
+        data-aos-anchor-placement="top-center" className="text-2xl mt-10 font-black text-red-600 text-center">You have not added any volunteer yet</h1>
     }
 
     return (
-        <div>
+        <div data-aos="zoom-in-down"
+
+        data-aos-delay="50"
+        data-aos-duration="1000"
+        
+        data-aos-anchor-placement="top-center" >
           <Helmet>
         <title>Manage My post</title>
       </Helmet>

@@ -7,7 +7,7 @@ const Error = () => {
           <div className="flex h-screen">
             <div className="m-auto text-center">
               <div>
-                <svg
+                <svg className="hidden md:flex"
                   width={631}
                   height={379}
                   viewBox="0 0 631 379"
@@ -267,7 +267,7 @@ const Error = () => {
                 </svg>
               </div>
               <p className="text-sm md:text-base text-yellow-300 p-2 mb-4">
-                The stuff you were looking for doesn&apos;t exist
+                <span className="text-red-500">OOOPS!</span> The stuff you were looking for doesn&apos;t exist
               </p>
               <a
                 href="/"

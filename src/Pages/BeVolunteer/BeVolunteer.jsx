@@ -106,7 +106,12 @@ const BeVolunteer = () => {
   }
 
   return (
-    <div>
+    <div data-aos="zoom-out-right"
+
+    data-aos-delay="50"
+    data-aos-duration="1000"
+    
+    data-aos-anchor-placement="top-center">
       <Helmet>
         <title>Be Volunteer</title>
       </Helmet>

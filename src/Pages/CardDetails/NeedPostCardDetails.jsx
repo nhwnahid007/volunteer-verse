@@ -39,7 +39,12 @@ const handleVolunteerNeed = () => {
 
   
   return (
-    <div className="min-h-screen mt-5 overflow-hidden">
+    <div data-aos="zoom-out-up"
+
+    data-aos-delay="50"
+    data-aos-duration="1000"
+    
+    data-aos-anchor-placement="top-center" className="min-h-screen mt-5 overflow-hidden">
       <Helmet>
         <title>Card details</title>
       </Helmet>

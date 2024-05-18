@@ -7,7 +7,12 @@ import { Helmet } from 'react-helmet-async';
 
 const MyActivity = () => {
     return (
-        <div>
+        <div data-aos="zoom-out-left"
+
+        data-aos-delay="50"
+        data-aos-duration="1000"
+        
+        data-aos-anchor-placement="top-center">
           <Helmet>
         <title>My activity</title>
       </Helmet>

@@ -7,7 +7,12 @@ const NeedVolunteerPageCard = ({ volunteer }) => {
     volunteer;
 
   return (
-    <div className="relative flex flex-col rounded-lg p-6 shadow-sm bg-[#fcf4ff]">
+    <div data-aos="zoom-out-up"
+
+    data-aos-delay="50"
+    data-aos-duration="1000"
+    
+    data-aos-anchor-placement="top-center" className="relative flex flex-col rounded-lg p-6 shadow-sm bg-[#fcf4ff]">
       <Helmet>
         <title>Need volunteer</title>
       </Helmet>
