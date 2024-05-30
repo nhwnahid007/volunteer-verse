@@ -8,7 +8,7 @@ const VolunteerCard = ({ volunteer }) => {
     <div className="relative rounded-lg p-6 shadow-sm bg-[#fcf4ff]">
       <div className="overflow-hidden rounded-lg">
         <img
-          className="mx-auto w-[600px] h-[300px] lg:h-[400px] cursor-pointer transition duration-200 ease-in-out transform hover:scale-110 rounded-lg"
+          className="mx-auto w-64 md:w-[600px] h-[300px] lg:h-[400px] cursor-pointer transition duration-200 ease-in-out transform hover:scale-110 rounded-lg"
           src={thumbnail}
           alt="thumbnail"
         />
