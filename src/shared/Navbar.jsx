@@ -64,6 +64,18 @@ const Navbar = () => {
                     Manage my activity
                   </NavLink>
                 </li>
+      <li>
+                <NavLink
+                    className={({ isActive }) =>
+                      isActive
+                        ? " font-black bg-gradient-to-r from-pink-300 via-purple-300 to-indigo-400"
+                        : "font-bold hover:bg-gray-200 hover:text-gray-500 hover:underline hover:underline-offset-2"
+                    }
+                    to="/blogs"
+                  >
+                    Read blogs
+                  </NavLink>
+                </li>
     </>
   );
 
@@ -187,6 +199,18 @@ const Navbar = () => {
                     to="/addvolunteerpost"
                   >
                     Add Volunteer Post
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    className={({ isActive }) =>
+                      isActive
+                        ? " font-black bg-gradient-to-r from-pink-300 via-purple-300 to-indigo-400"
+                        : "font-bold hover:bg-gray-200 hover:text-gray-500 hover:underline hover:underline-offset-2"
+                    }
+                    to="/addblog"
+                  >
+                    Add Blog Post
                   </NavLink>
                 </li>
                 <li>

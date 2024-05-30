@@ -13,6 +13,8 @@ import BeVolunteer from "../Pages/BeVolunteer/BeVolunteer";
 import MyBeVolunteerReq from "../Pages/MyBeVolunteerReq/MyBeVolunteerReq";
 import PrivateRoute from "./PrivateRoute";
 import MyActivity from "../Pages/MyActivity/MyActivity";
+import AddBlogs from "../Pages/Blogs/AddBlogs";
+import ShowAllBlogs from "../Pages/Blogs/ShowAllBlogs";
 
 
 const router = createBrowserRouter([
@@ -61,6 +63,14 @@ const router = createBrowserRouter([
         {
           path: '/addvolunteerpost',
           element:<PrivateRoute><AddVolunteerPost></AddVolunteerPost></PrivateRoute>
+        },
+        {
+          path: '/addblog',
+          element:<PrivateRoute><AddBlogs></AddBlogs></PrivateRoute>
+        },
+        {
+          path: '/blogs',
+          element: <ShowAllBlogs></ShowAllBlogs>
         },
         {
           path: '/needvolunteer',
